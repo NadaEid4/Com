@@ -1,0 +1,73 @@
+.landing-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background: url('/assets/banner.jpg') center/cover no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Dark overlay on banner */
+.overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(3px);
+}
+
+/* Centered text */
+.content {
+  position: relative;
+  text-align: center;
+  color: #fff;
+  max-width: 700px;
+  padding: 20px;
+  animation: fadeUp 1.3s ease-out;
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  line-height: 1.2;
+}
+
+.subtitle {
+  font-size: 1.3rem;
+  opacity: 0.9;
+  margin-bottom: 30px;
+}
+
+/* Cool button */
+.register-btn {
+  background: linear-gradient(90deg, #ff7b00, #ffbb00);
+  color: white;
+  border: none;
+  padding: 14px 32px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+  box-shadow: 0 8px 25px rgba(255, 140, 0, 0.4);
+}
+
+.register-btn:hover {
+  transform: scale(1.07);
+  box-shadow: 0 10px 30px rgba(255, 200, 0, 0.5);
+}
+
+/* Entrance animation */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,219 @@
+/* ---------- GLOBAL ---------- */
+body {
+  background: #f5f7fb;
+  font-family: 'Inter', sans-serif;
+}
+.form-group small {
+  color: #e63946; /* bright red for errors */
+  font-weight: 500;
+  margin-top: 5px;
+  display: block;
+  font-size: 13px;
+  opacity: 0.9;
+  transition: opacity 0.3s;
+}
+
+.form-container {
+  max-width: 760px;
+  margin: 40px auto;
+  padding: 40px;
+  background: #ffffff;
+  border-radius: 22px;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.08);
+  animation: fadeIn 0.5s ease-in-out;
+}
+input.ng-invalid.ng-touched,
+select.ng-invalid.ng-touched,
+textarea.ng-invalid.ng-touched {
+  border-color: #e63946;
+  box-shadow: 0 0 0 3px rgba(230, 57, 70, 0.15);
+}
+
+
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+h2 {
+  text-align: center;
+  font-size: 32px;
+  font-weight: 800;
+  margin-bottom: 25px;
+  background: linear-gradient(90deg, #0066ff, #00bbff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ---------- FORM INPUTS ---------- */
+.form-group {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #333;
+}
+
+input.ng-invalid.ng-touched,
+select.ng-invalid.ng-touched,
+textarea.ng-invalid.ng-touched {
+  border-color: #e63946;
+  box-shadow: 0 0 0 3px rgba(230, 57, 70, 0.15);
+}
+
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #0094ff;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(0, 148, 255, 0.15);
+}
+
+/* ---------- MEMBER BOX ---------- */
+
+
+.member-box {
+  padding: 20px;
+  background: #fdfdfd;
+  border: 2px solid #e7ebf3;
+  border-radius: 14px;
+  margin-bottom: 25px;
+  transition: 0.25s;
+}
+
+.member-box:hover {
+  border-color: #0094ff;
+  box-shadow: 0 6px 20px rgba(0, 148, 255, 0.1);
+}
+
+.member-box h3 {
+  font-size: 20px;
+  margin-bottom: 18px;
+  font-weight: 700;
+  color: #0066cc;
+}
+
+/* ---------- LAYOUT ---------- */
+.two-column {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.floating-button {
+  position: sticky;
+  bottom: 20px;
+  display: flex;
+  justify-content: center;
+  z-index: 1000;
+}
+.floating-button button {
+  padding: 15px 25px;
+  background: #007bff;
+  color: white;
+  border-radius: 12px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  transition: 0.2s;
+}
+.floating-button button:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+
+@media (max-width: 600px) {
+  .two-column {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- BUTTONS ---------- */
+.add-btn,
+.remove-btn,
+.review-btn,
+.submit-btn {
+  padding: 13px 18px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s ease;
+}
+
+.add-btn {
+  background: #e8f3ff;
+  color: #0066ff;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.add-btn:hover {
+  background: #d6eaff;
+}
+
+.remove-btn {
+  background: #ffecef;
+  color: #e63946;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.remove-btn:hover {
+  background: #ffd9de;
+}
+
+.button-row {
+  display: flex;
+  gap: 14px;
+  margin-top: 25px;
+}
+
+.review-btn {
+  flex: 1;
+  background: #f8f9fc;
+  color: #0056b3;
+  border: 2px solid #dfe3eb;}
+
+.review-btn:hover {
+  background: #eef2f9;
+}
+
+.submit-btn {
+    flex: 1;
+  background: linear-gradient(90deg, #007bff, #00bbff);
+  color: white;
+}
+
+.submit-btn:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+/* ---------- SUCCESS / ERROR ---------- */
+.success,
+.error {
+  margin-top: 25px;
+  padding: 14px;
+  border-radius: 12px;
+  font-weight: 600;
+  animation: fadeIn 0.4s ease;
+}
+
+.success {
+  background: #d4f8dd;
+  color: #18753c;
+}
+
+.error {
+  background: #ffe3e3;
+  color: #c60000;
+}
