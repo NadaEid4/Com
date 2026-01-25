@@ -1,42 +1,80 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Firestore, addDoc, collection } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { supabase } from '../supabase.client';
+import Swal from 'sweetalert2';
+
 @Component({
   selector: 'app-review',
   standalone: true,
-  imports: [CommonModule,FormsModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './review.html',
-  styleUrl: './review.css'
+  styleUrls: ['./review.css']
 })
 export class ReviewComponent {
+
+  private router = inject(Router);
 
   data: any;
   sending = false;
   success = '';
   error = '';
+  agreementChecked = false;
 
-  constructor(private firestore: Firestore, private router: Router) {
-    this.data = history.state; // GET DATA SENT FROM REGISTER FORM
+  constructor() {
+    this.data = history.state;
+
     if (!this.data || Object.keys(this.data).length === 0) {
       this.router.navigate(['/register']);
     }
   }
-  agreementChecked = false;
 
+ async confirmSubmit() {
+  if (!this.agreementChecked) return;
 
-  async confirmSubmit() {
-    this.sending = true;
-    this.error = '';
-    try {
-      await addDoc(collection(this.firestore, 'registrations'), this.data);
-      this.success = 'Registration Submitted Successfully!';
-    } catch (err) {
-      this.error = 'Error submitting data.';
-    }
+  this.sending = true;
+
+  try {
+    // 1️⃣ Insert data into Supabase
+    const { error } = await supabase
+      .from('teams')
+      .insert([{
+        university: this.data.university,
+        faculty: this.data.faculty,
+        teamName: this.data.teamName,
+        membersCount: this.data.membersCount,
+        members: this.data.members || []
+      }]);
+
+    if (error) throw error;
+
+    // 2️⃣ Show success popup **here** AFTER successful insert
+    await Swal.fire({
+      icon: 'success',
+      title: 'Thank you!',
+      text: 'Your registration has been submitted successfully.',
+      confirmButtonText: 'OK'
+    });
+
+    // 3️⃣ Clear form data
+    this.data = null;
+
+    // 4️⃣ Navigate back to Register page
+    this.router.navigate(['/register'], { state: {} });
+
+  } catch (e: any) {
+    console.error(e);
+    await Swal.fire({
+      icon: 'error',
+      title: 'Error',
+      text: 'Failed to submit registration.'
+    });
+  } finally {
     this.sending = false;
   }
+}
+
 
   backToForm() {
     this.router.navigate(['/register'], { state: this.data });

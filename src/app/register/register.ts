@@ -1,16 +1,16 @@
 import { Component } from '@angular/core';
-import { ReactiveFormsModule, FormBuilder, FormGroup, FormArray, Validators, FormControl } from '@angular/forms';
+import { ReactiveFormsModule, FormBuilder, FormGroup, FormArray, Validators, FormControl, AbstractControl } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Firestore, addDoc, collection } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { supabase } from '../supabase.client'; // ✅ Import Supabase client
 
 @Component({
   selector: 'app-register',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './register.html',
-  styleUrl: './register.css',
+  styleUrls: ['./register.css']
 })
 export class Register {
 
@@ -21,48 +21,28 @@ export class Register {
 
   constructor(
     private fb: FormBuilder,
-    private firestore: Firestore,
-    private router: Router   // ✅ FIXED
+    private router: Router
   ) {
-
     this.form = this.fb.group({
       university: ['', Validators.required],
       faculty: ['', Validators.required],
       teamName: ['', Validators.required],
-
-       membersCount: [null, [Validators.required, Validators.min(1)]],
-
+      membersCount: [null, [Validators.required, Validators.min(1)]],
       members: this.fb.array([])
     });
   }
 
-
   get members() {
     return this.form.get('members') as FormArray;
-    
   }
+
   ngOnInit() {
-  const savedData = history.state;
-
-  if (savedData && Object.keys(savedData).length > 0 && savedData.university) {
-    this.form.patchValue({
-      university: savedData.university,
-      faculty: savedData.faculty,
-      teamName: savedData.teamName,
-      membersCount: savedData.membersCount,
-      projectEn: savedData.projectEn,
-      projectAr: savedData.projectAr,
-      supervisorName: savedData.supervisorName,
-      supervisorEmail: savedData.supervisorEmail,
-      supervisorPhone: savedData.supervisorPhone,
-      benefits: savedData.benefits
-    });
-
-    // ⭐ Rebuild member forms
-    this.members.clear();
-    savedData.members?.forEach((m: any) => {
-      this.members.push(
-        this.fb.group({
+    const savedData = history.state;
+    if (savedData && Object.keys(savedData).length > 0 && savedData.university) {
+      this.form.patchValue(savedData);
+      this.members.clear();
+      savedData.members?.forEach((m: any) => {
+        this.members.push(this.fb.group({
           fullNameEn: [m.fullNameEn],
           fullNameAr: [m.fullNameAr],
           email: [m.email],
@@ -72,36 +52,25 @@ export class Register {
           gender: [m.gender],
           governorate: [m.governorate],
           nationalId: [m.nationalId]
-        })
-      );
-    });
+        }));
+      });
+    }
+      if (!savedData || Object.keys(savedData).length === 0) {
+    // Reset form if no data
+    this.form.reset();
+    this.members.clear();
+    return;
+  }
+  }
+markAllAsTouched(control: AbstractControl): void {
+  if (control instanceof FormControl) {
+    control.markAsTouched();
+  } else if (control instanceof FormGroup) {
+    Object.values(control.controls).forEach(c => this.markAllAsTouched(c));
+  } else if (control instanceof FormArray) {
+    control.controls.forEach(c => this.markAllAsTouched(c));
   }
 }
-
-markAllAsTouched(formGroup: FormGroup | FormArray) {
-  if (formGroup instanceof FormGroup) {
-    Object.keys(formGroup.controls).forEach(key => {
-      const control = formGroup.get(key);
-      if (!control) return;
-
-      if (control instanceof FormControl) {
-        control.markAsTouched();
-      } else if (control instanceof FormGroup || control instanceof FormArray) {
-        this.markAllAsTouched(control);
-      }
-    });
-  } else if (formGroup instanceof FormArray) {
-    formGroup.controls.forEach(control => {
-      if (control instanceof FormControl) {
-        control.markAsTouched();
-      } else if (control instanceof FormGroup || control instanceof FormArray) {
-        this.markAllAsTouched(control);
-      }
-    });
-  }
-}
-
-
 
 
   createMember(): FormGroup {
@@ -126,53 +95,46 @@ markAllAsTouched(formGroup: FormGroup | FormArray) {
     this.members.removeAt(i);
   }
 
-goToReview() {
-  this.markAllAsTouched(this.form);
-  this.form.updateValueAndValidity();
-
-  // Invalid form
-  if (this.form.invalid) {
-    Swal.fire({
-      icon: 'warning',
-      title: 'Missing Information',
-      text: 'Please fill in all required fields before reviewing your data.',
-      confirmButtonText: 'OK'
-    });
-    return;
+  goToReview() {
+    this.markAllAsTouched(this.form);
+    this.form.updateValueAndValidity();
+    if (this.form.invalid) {
+      Swal.fire({ icon: 'warning', title: 'Missing Information', text: 'Please fill all required fields.', confirmButtonText: 'OK' });
+      return;
+    }
+    const requiredMembers = parseInt(this.form.get('membersCount')?.value || '0', 10);
+    const addedMembers = this.members.length;
+    if (requiredMembers !== addedMembers) {
+      Swal.fire({ icon: 'error', title: 'Members Missing', text: `You selected ${requiredMembers}, but added ${addedMembers}.`, confirmButtonText: 'OK' });
+      return;
+    }
+    this.router.navigate(['/review'], { state: this.form.value });
   }
-
-  // SAFE conversion (no NaN)
-  const requiredMembers = parseInt(this.form.get('membersCount')?.value || '0', 10);
-  const addedMembers = this.members.length;
-
-  if (requiredMembers !== addedMembers) {
-    Swal.fire({
-      icon: 'error',
-      title: 'Members Missing',
-      text: `You selected ${requiredMembers} member(s), but only added ${addedMembers}.`,
-      confirmButtonText: 'OK'
-    });
-    return;
-  }
-
-  this.router.navigate(['/review'], { state: this.form.value });
-}
-
-
 
   async submit() {
     if (this.form.invalid) return;
-
     this.sending = true;
 
     try {
-      await addDoc(collection(this.firestore, 'registrations'), this.form.value);
+      // ⭐ Supabase Insert
+      const { data, error } = await supabase
+        .from('teams')
+        .insert([{
+          university: this.form.value.university,
+          faculty: this.form.value.faculty,
+          teamName: this.form.value.teamName,
+          membersCount: this.form.value.membersCount,
+          members: this.form.value.members // stored as JSON array
+        }]);
+
+      if (error) throw error;
 
       this.success = 'Registered successfully!';
       this.form.reset();
       this.members.clear();
 
-    } catch (e) {
+    } catch (e: any) {
+      console.error(e);
       this.error = 'Error saving data!';
     }
 
