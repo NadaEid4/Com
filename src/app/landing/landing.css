@@ -2,7 +2,7 @@
   position: relative;
   width: 100%;
   height: 100vh;
-  background: url('/assets/banner.jpg') center/cover no-repeat;
+  background: url('../assets/Red\ &\ White\ Geometric\ Bold\ Simple\ Company\ Profile\ Presentation.png') center/cover no-repeat;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -14,7 +14,7 @@
   position: absolute;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.55);
+  background:rgb(125 50 50 / 42%);
   backdrop-filter: blur(3px);
 }
 
@@ -43,7 +43,7 @@
 
 /* Cool button */
 .register-btn {
-  background: linear-gradient(90deg, #ff7b00, #ffbb00);
+  background: linear-gradient(90deg,  rgb(87 57 57), #8d0000);
   color: white;
   border: none;
   padding: 14px 32px;
@@ -52,12 +52,12 @@
   border-radius: 50px;
   cursor: pointer;
   transition: 0.3s ease-in-out;
-  box-shadow: 0 8px 25px rgba(255, 140, 0, 0.4);
+  box-shadow: 0 8px 25px rgba(255, 255, 255, 0.582);
 }
 
 .register-btn:hover {
   transform: scale(1.07);
-  box-shadow: 0 10px 30px rgba(255, 200, 0, 0.5);
+  box-shadow: 0 10px 30px rgba(255, 255, 255, 0.582);
 }
 
 /* Entrance animation */

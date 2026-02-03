@@ -1,6 +1,8 @@
 /* ---------- GLOBAL ---------- */
+
 body {
   background: #f5f7fb;
+
   font-family: 'Inter', sans-serif;
 }
 .form-group small {
@@ -18,6 +20,7 @@ body {
   margin: 40px auto;
   padding: 40px;
   background: #ffffff;
+  
   border-radius: 22px;
   box-shadow: 0 14px 40px rgba(0, 0, 0, 0.08);
   animation: fadeIn 0.5s ease-in-out;
@@ -41,7 +44,7 @@ h2 {
   font-size: 32px;
   font-weight: 800;
   margin-bottom: 25px;
-  background: linear-gradient(90deg, #0066ff, #00bbff);
+  background: linear-gradient(90deg, #c70000, #970303);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -71,7 +74,7 @@ textarea.ng-invalid.ng-touched {
 input:focus,
 select:focus,
 textarea:focus {
-  border-color: #0094ff;
+  border-color: #c70000;
   background: #ffffff;
   box-shadow: 0 0 0 3px rgba(0, 148, 255, 0.15);
 }
@@ -89,7 +92,7 @@ textarea:focus {
 }
 
 .member-box:hover {
-  border-color: #0094ff;
+  border-color: #c70000;
   box-shadow: 0 6px 20px rgba(0, 148, 255, 0.1);
 }
 
@@ -97,7 +100,7 @@ textarea:focus {
   font-size: 20px;
   margin-bottom: 18px;
   font-weight: 700;
-  color: #0066cc;
+  color: #c70000;
 }
 
 /* ---------- LAYOUT ---------- */
@@ -115,7 +118,7 @@ textarea:focus {
 }
 .floating-button button {
   padding: 15px 25px;
-  background: #007bff;
+  background: #8d0000;
   color: white;
   border-radius: 12px;
   font-weight: 600;
@@ -151,7 +154,7 @@ textarea:focus {
 
 .add-btn {
   background: #e8f3ff;
-  color: #0066ff;
+  color: #c70000;
   width: 100%;
   margin-bottom: 20px;
 }
@@ -180,7 +183,7 @@ textarea:focus {
 .review-btn {
   flex: 1;
   background: #f8f9fc;
-  color: #0056b3;
+  color: #c70000;
   border: 2px solid #dfe3eb;}
 
 .review-btn:hover {
@@ -189,7 +192,7 @@ textarea:focus {
 
 .submit-btn {
     flex: 1;
-  background: linear-gradient(90deg, #007bff, #00bbff);
+  background: linear-gradient(90deg, #c70000, #c70000);
   color: white;
 }
 
