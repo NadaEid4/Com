@@ -1,78 +1,75 @@
-.form-container {
-  max-width: 760px;
-  margin: 40px auto;
-  padding: 40px;
-  background: rgba(255, 255, 255, 0.95); /* slightly transparent so bg image shows */
-  border-radius: 22px;
-  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.08);
-  animation: fadeIn 0.5s ease-in-out;
-  transition: all 0.3s ease-in-out; /* smooth height expansion */
-}
+/* Container */
 .review-container {
+  background-color: #ffffff;
+  border-radius: 16px;
   max-width: 900px;
-  margin: auto;
-  padding: 25px;
+  margin: 40px auto;
+  padding: 30px;
   font-family: 'Segoe UI', sans-serif;
-}
-.review-container .card,
-.review-container .member-card {
-  margin-bottom: 20px;
-  padding: 20px;
-  border-radius: 14px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-  background: #fff;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+  animation: fadeIn 0.5s ease-in-out;
 }
 
+/* Titles */
 .title {
   font-size: 28px;
   font-weight: bold;
   text-align: center;
+  color: #333;
 }
 
 .subtitle {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   color: #666;
 }
 
+/* Cards */
 .card,
 .member-card {
-  background: white;
+  background: #fff;
   border-radius: 12px;
-  padding: 20px;
-  margin-bottom: 20px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  padding: 20px 25px;
+  margin-bottom: 25px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+  transition: transform 0.2s;
 }
 
+.card:hover,
+.member-card:hover {
+  transform: translateY(-2px);
+}
+
+/* Section Titles */
 .section-title {
   font-size: 22px;
   font-weight: 600;
   margin-bottom: 15px;
-  border-left: 5px solid #8d0000;
+  border-left: 5px solid #99822f;
   padding-left: 10px;
+  color: #333;
 }
 
+/* Grid Layout for Info */
 .info-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12px;
+  gap: 15px 25px;
 }
 
-.member-list {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-}
-
+/* Member Card Titles */
 .member-card h4 {
   font-size: 18px;
-  margin-bottom: 10px;
-  color: #8d0000;
+  margin-bottom: 15px;
+  color: #99822f;
 }
 
+/* Confirmation Checkbox */
 .confirm-box {
   font-size: 16px;
-  margin-top: 20px;
+  margin-top: 25px;
+  display: flex;
+  align-items: center;
 }
 
 .confirm-box input {
@@ -80,10 +77,11 @@
   transform: scale(1.2);
 }
 
+/* Buttons */
 .button-row {
-  margin-top: 25px;
   display: flex;
   justify-content: space-between;
+  margin-top: 25px;
 }
 
 .back-btn,
@@ -97,14 +95,52 @@
 
 .back-btn {
   background: #ccc;
+  color: #333;
 }
 
 .confirm-btn {
-  background: #28a745;
+  background: #99822f;
   color: white;
+  font-weight: 600;
 }
 
 .confirm-btn:disabled {
-  background: #9ccc9c;
+  background: #d3b76d;
   cursor: not-allowed;
+}
+
+/* Success & Error Messages */
+.success {
+  margin-top: 20px;
+  padding: 12px;
+  background: #d4f8dd;
+  color: #18753c;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+.error {
+  margin-top: 20px;
+  padding: 12px;
+  background: #ffe3e3;
+  color: #99822f;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+  .button-row {
+    flex-direction: column;
+    gap: 15px;
+  }
 }

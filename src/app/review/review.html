@@ -3,45 +3,38 @@
   <h2 class="title">Review Your Registration</h2>
   <p class="subtitle">Please confirm that all the information below is accurate.</p>
 
-  <!-- TEAM INFO -->
+  <!-- TEAM & PROJECT INFO -->
   <div class="card">
-    <h3 class="section-title">Team Information</h3>
-
+    <h3 class="section-title">Team & Project Information</h3>
     <div class="info-grid">
       <div><strong>University / Institution:</strong> {{ data.university }}</div>
       <div><strong>Faculty / College:</strong> {{ data.faculty }}</div>
       <div><strong>Team Name:</strong> {{ data.teamName }}</div>
-
-      <div><strong>Project Description (EN):</strong> {{ data.projectEn }}</div>
-      <div><strong>الفكرة بالعربية:</strong> {{ data.projectAr }}</div>
-
+      <div><strong>Project Title:</strong> {{ data.projectTitle }}</div>
+      <div><strong>Project Description:</strong> {{ data.projectDescription }}</div>
       <div><strong>Supervisor Name:</strong> {{ data.supervisorName }}</div>
       <div><strong>Supervisor Email:</strong> {{ data.supervisorEmail }}</div>
-      <div><strong>Supervisor Phone:</strong> {{ data.supervisorPhone }}</div>
-
-      <div><strong>Benefits Expected:</strong> {{ data.benefits }}</div>
-      <div><strong>Team Members Count:</strong> {{ data.membersCount }}</div>
+      <div><strong>City:</strong> {{ data.city }}</div>
+      <div><strong>Number of Team Members:</strong> {{ data.membersCount }}</div>
     </div>
   </div>
 
-  <br>
-
   <!-- MEMBERS SECTION -->
   <h3 class="section-title">Team Members</h3>
-
   <div class="member-list">
     <div *ngFor="let m of data.members; let i = index" class="member-card">
       <h4>Member {{ i + 1 }}</h4>
-
-      <p><strong>Full Name (EN):</strong> {{ m.fullNameEn }}</p>
-      <p><strong>Full Name (AR):</strong> {{ m.fullNameAr }}</p>
-      <p><strong>Email:</strong> {{ m.email }}</p>
-      <p><strong>Phone:</strong> {{ m.phone }}</p>
-      <p><strong>Department:</strong> {{ m.department }}</p>
-      <p><strong>Graduation Year:</strong> {{ m.graduationYear }}</p>
-      <p><strong>Gender:</strong> {{ m.gender }}</p>
-      <p><strong>Governorate:</strong> {{ m.governorate }}</p>
-      <p><strong>National ID:</strong> {{ m.nationalId }}</p>
+      <div class="info-grid">
+        <div><strong>Full Name (EN):</strong> {{ m.fullNameEn }}</div>
+        <div><strong>Full Name (AR):</strong> {{ m.fullNameAr }}</div>
+        <div><strong>Email:</strong> {{ m.email }}</div>
+        <div><strong>Mobile Phone:</strong> {{ m.phone }}</div>
+        <div><strong>Department:</strong> {{ m.department }}</div>
+        <div><strong>Expected Graduation Year:</strong> {{ m.graduationYear }}</div>
+        <div><strong>Gender:</strong> {{ m.gender }}</div>
+        <div><strong>Governorate:</strong> {{ m.governorate }}</div>
+        <div><strong>National ID Number:</strong> {{ m.nationalId }}</div>
+      </div>
     </div>
   </div>
 
@@ -53,16 +46,31 @@
     </label>
   </div>
 
-  <!-- BUTTONS -->
-  <div class="button-row">
-    <button class="back-btn" (click)="backToForm()">← Edit Data</button>
 
+ <!-- BUTTONS -->
+ <div class="button-row">
+    <button class="back-btn" (click)="backToForm()">← Edit Data</button>
     <button class="confirm-btn"
             (click)="confirmSubmit()"
             [disabled]="!agreementChecked || sending">
       {{ sending ? 'Submitting...' : 'Confirm & Submit' }}
     </button>
+    <button class="draft-btn" (click)="saveAsDraft()">
+      💾 Save as Draft
+    </button>
   </div>
+
+  <!-- Show draft link if available -->
+  <div *ngIf="draftLink" class="draft-link">
+    Temporary Link: <a [href]="draftLink" target="_blank">{{ draftLink }}</a>
+  </div>
+
+
+
+<!-- Show draft link if available -->
+<div *ngIf="draftLink" class="draft-link">
+  Temporary Link: <a [href]="draftLink" target="_blank">{{ draftLink }}</a>
+</div>
 
   <div class="success" *ngIf="success">{{ success }}</div>
   <div class="error" *ngIf="error">{{ error }}</div>

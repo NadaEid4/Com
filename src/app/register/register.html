@@ -1,165 +1,192 @@
 <div class="form-container">
 
-  <h2>Team Registration Form</h2>
+  <!-- HEADER WITH LOGO -->
+  <div class="form-header">
+    <img src="/assets/Screenshot.png" alt="Logo" class="logo">
+    <h2>Team Registration Form</h2>
+   <img src="/assets/eitesal.png" alt="Logo" class="logo">
+  </div>
 
-  <form [formGroup]="form" (ngSubmit)="submit()">
-    
- <div class="form-group">
-      <label>Team Name *</label>
-      <input formControlName="teamName" placeholder="Enter your team name"/>
-      <small *ngIf="form.get('teamName')?.invalid && form.get('teamName')?.touched">
-        This field is required.
-      </small>
-    </div>
-    <!-- Main team info -->
+  <form [formGroup]="form">
+
+    <!-- PROJECT INFO -->
+    <h3>Graduation Project Information</h3>
+<div class="form-group">
+  <label>Team Name *</label>
+  <input formControlName="teamName">
+  <small *ngIf="form.get('teamName')?.invalid && form.get('teamName')?.touched">
+    Team Name is required.
+  </small>
+</div>
+
+<div class="form-group">
+  <label>Project Title *</label>
+  <input formControlName="projectTitle">
+  <small *ngIf="form.get('projectTitle')?.invalid && form.get('projectTitle')?.touched">
+    Project Title is required.
+  </small>
+</div>
+
+<div class="form-group">
+  <label>Project Description *</label>
+  <textarea formControlName="projectDescription"></textarea>
+  <small *ngIf="form.get('projectDescription')?.invalid && form.get('projectDescription')?.touched">
+    Project Description is required.
+  </small>
+</div>
+
+<div class="form-group">
+  <label>Supervisor Name *</label>
+  <input formControlName="supervisorName">
+  <small *ngIf="form.get('supervisorName')?.invalid && form.get('supervisorName')?.touched">
+    Supervisor Name is required.
+  </small>
+</div>
+
+<div class="form-group">
+  <label>Supervisor Email *</label>
+  <input formControlName="supervisorEmail">
+  <small *ngIf="form.get('supervisorEmail')?.touched && form.get('supervisorEmail')?.invalid">
+    <span *ngIf="form.get('supervisorEmail')?.errors?.['required']">Email is required.</span>
+    <span *ngIf="form.get('supervisorEmail')?.errors?.['email']">Invalid email format.</span>
+  </small>
+</div>
+<div class="form-group">
+  <label>Governorate *</label>
+  <select formControlName="governorate">
+    <option value="">Select Governorate</option>
+    <option *ngFor="let gov of governorates" [value]="gov">{{ gov }}</option>
+  </select>
+
+</div>
+
+
+
+    <hr>
+
+    <!-- UNIVERSITY & TEAM INFO -->
     <div class="form-group">
       <label>University / Institution *</label>
-      <input formControlName="university" placeholder="Enter university/institution"/>
-      <small *ngIf="form.get('university')?.invalid && form.get('university')?.touched">
-        This field is required.
-      </small>
+      <input formControlName="university">
     </div>
-
     <div class="form-group">
       <label>Faculty / College *</label>
-      <input formControlName="faculty" placeholder="Enter faculty/college"/>
-      <small *ngIf="form.get('faculty')?.invalid && form.get('faculty')?.touched">
-        This field is required.
-      </small>
+      <input formControlName="faculty">
     </div>
-
-   
-
     <div class="form-group">
       <label>Number of Team Members *</label>
-      <input type="number" formControlName="membersCount" placeholder="E.g. 2"/>
-      <small *ngIf="form.get('membersCount')?.invalid && form.get('membersCount')?.touched">
-        Please enter number of team members.
-      </small>
+      <input type="number" formControlName="membersCount">
     </div>
 
     <hr>
 
-    <!-- ADD MEMBER BUTTON -->
-    <button type="button" class="add-btn" (click)="addMember()">
-      ➕ Add Team Member
-    </button>
+ <!-- MEMBERS -->
+<div formArrayName="members">
+  <div *ngFor="let member of members.controls; let i = index" [formGroupName]="i" #memberCard class="member-box">
+    <h4>Member {{ i + 1 }}</h4>
 
-    <!-- Dynamic Member Forms -->
-    <div formArrayName="members">
-      <div *ngFor="let member of members.controls; let i = index" [formGroupName]="i" class="member-box">
-
-        <h3>Member {{ i + 1 }} Details</h3>
-
-        <div class="two-column">
-
-          <div class="form-group">
-            <label>Full Name (English) *</label>
-            <input formControlName="fullNameEn" placeholder="John Doe"/>
-            <small *ngIf="member.get('fullNameEn')?.invalid && member.get('fullNameEn')?.touched">
-              Full name in English is required.
-            </small>
-          </div>
-
-          <div class="form-group">
-            <label>Full Name (Arabic) *</label>
-            <input formControlName="fullNameAr" placeholder="أحمد محمد"/>
-            <small *ngIf="member.get('fullNameAr')?.invalid && member.get('fullNameAr')?.touched">
-              Full name in Arabic is required.
-            </small>
-          </div>
-
-        </div>
-
-        <div class="two-column">
-          <div class="form-group">
-            <label>Email *</label>
-            <input formControlName="email" placeholder="example@mail.com"/>
-            <small *ngIf="member.get('email')?.invalid && member.get('email')?.touched">
-              Enter a valid email.
-            </small>
-          </div>
-
-          <div class="form-group">
-            <label>Mobile Phone *</label>
-            <input formControlName="phone" placeholder="+20 100 000 0000"/>
-            <small *ngIf="member.get('phone')?.invalid && member.get('phone')?.touched">
-              Phone is required.
-            </small>
-          </div>
-        </div>
-
-        <div class="two-column">
-          <div class="form-group">
-            <label>Department *</label>
-            <input formControlName="department"/>
-            <small *ngIf="member.get('department')?.invalid && member.get('department')?.touched">
-              Department is required.
-            </small>
-          </div>
-
-          <div class="form-group">
-            <label>Expected Graduation Year *</label>
-            <input formControlName="graduationYear"/>
-            <small *ngIf="member.get('graduationYear')?.invalid && member.get('graduationYear')?.touched">
-              Graduation year is required.
-            </small>
-          </div>
-        </div>
-
-        <div class="two-column">
-          <div class="form-group">
-            <label>Gender *</label>
-            <select formControlName="gender">
-              <option value="" disabled>Select...</option>
-              <option>Male</option>
-              <option>Female</option>
-            </select>
-            <small *ngIf="member.get('gender')?.invalid && member.get('gender')?.touched">
-              Gender is required.
-            </small>
-          </div>
-
-          <div class="form-group">
-            <label>Governorate *</label>
-            <input formControlName="governorate"/>
-            <small *ngIf="member.get('governorate')?.invalid && member.get('governorate')?.touched">
-              Governorate is required.
-            </small>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label>National ID Number *</label>
-          <input formControlName="nationalId"/>
-      <!-- REQUIRED -->
-<small *ngIf="member.get('nationalId')?.hasError('required') && member.get('nationalId')?.touched">
-  National ID is required.
-</small>
-
-<!-- INVALID FORMAT -->
-<small *ngIf="member.get('nationalId')?.hasError('pattern') && member.get('nationalId')?.touched">
-  National ID must start with 2 or 3 and be exactly 14 digits.
-</small>
-
-
-        </div>
-
-        <button type="button" class="remove-btn" (click)="removeMember(i)">
-          ❌ Remove Member
-        </button>
-
-      </div>
+    <div class="form-group">
+      <label>Full Name (EN) *</label>
+      <input formControlName="fullNameEn">
+      <small class="error" *ngIf="member.get('fullNameEn')?.touched && member.get('fullNameEn')?.invalid">
+        Full Name (EN) is required.
+      </small>
     </div>
 
- <div class="floating-button">
-  <button type="button" class="review-btn" (click)="goToReview()">
-   👀 Review Your Data
-  </button>
+    <div class="form-group">
+      <label>Full Name (AR) *</label>
+      <input formControlName="fullNameAr">
+      <small class="error" *ngIf="member.get('fullNameAr')?.touched && member.get('fullNameAr')?.invalid">
+        Full Name (AR) is required.
+      </small>
+    </div>
+
+    <div class="form-group">
+      <label>Email *</label>
+      <input formControlName="email">
+      <small class="error" *ngIf="member.get('email')?.touched && member.get('email')?.invalid">
+        <span *ngIf="member.get('email')?.errors?.['required']">Email is required.</span>
+        <span *ngIf="member.get('email')?.errors?.['email']">Email must be valid.</span>
+      </small>
+    </div>
+
+    <div class="form-group">
+      <label>Phone *</label>
+      <input formControlName="phone">
+      <small class="error" *ngIf="member.get('phone')?.touched && member.get('phone')?.invalid">
+        <span *ngIf="member.get('phone')?.errors?.['required']">Phone is required.</span>
+        <span *ngIf="member.get('phone')?.errors?.['pattern']">Phone must be a valid Egyptian number.</span>
+      </small>
+    </div>
+
+    <div class="form-group">
+      <label>Department *</label>
+      <input formControlName="department">
+      <small class="error" *ngIf="member.get('department')?.touched && member.get('department')?.invalid">
+        Department is required.
+      </small>
+    </div>
+
+    <div class="form-group">
+      <label>Graduation Year *</label>
+      <select formControlName="graduationYear">
+    <option value="">Select Year</option>
+    <option *ngFor="let year of graduationYears" [value]="year">{{ year }}</option>
+  </select>
+      <small class="error" *ngIf="member.get('graduationYear')?.touched && member.get('graduationYear')?.invalid">
+        Graduation Year is required.
+      </small>
+    </div>
+
+    <div class="form-group">
+      <label>Gender *</label>
+        <select formControlName="gender">
+    <option value="">Select Gender</option>
+    <option *ngFor="let g of genders" [value]="g">{{ g }}</option>
+  </select>
+      <small class="error" *ngIf="member.get('gender')?.touched && member.get('gender')?.invalid">
+        Gender is required.
+      </small>
+    </div>
+
+    <div class="form-group">
+      <label>Governorate *</label>
+<select formControlName="governorate">
+    <option value="">Select Governorate</option>
+    <option *ngFor="let gov of governorates" [value]="gov">{{ gov }}</option>
+  </select>
+      <small class="error" *ngIf="member.get('governorate')?.touched && member.get('governorate')?.invalid">
+        Governorate is required.
+      </small>
+    </div>
+
+    <div class="form-group">
+      <label>National ID *</label>
+      <input formControlName="nationalId">
+      <small class="error" *ngIf="member.get('nationalId')?.touched && member.get('nationalId')?.invalid">
+        <span *ngIf="member.get('nationalId')?.errors?.['required']">National ID is required.</span>
+        <span *ngIf="member.get('nationalId')?.errors?.['pattern']">National ID must start with 2 or 3 and be 14 digits.</span>
+      </small>
+    </div>
+
+    <button type="button" class="remove-btn" (click)="removeMember(i)">Remove Member</button>
+  </div>
+  
 </div>
+
+
+    <button type="button" class="add-btn" (click)="addMember()">Add Team Member</button>
+
+    <hr>
+
+    <!-- BUTTONS -->
+    <div class="button-row">
+      <button type="button" class="review-btn" (click)="goToReview()">Review Registration</button>
+   </div>
 
   </form>
 
+  <!-- SUCCESS / ERROR MESSAGES -->
   <div class="success" *ngIf="success">{{ success }}</div>
   <div class="error" *ngIf="error">{{ error }}</div>
 
