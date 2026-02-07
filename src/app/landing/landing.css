@@ -1,12 +1,13 @@
 .landing-wrapper {
   position: relative;
   width: 100%;
-  height: 100vh;
+  height: 97vh;
   background: url('../../assets/hero-bg.png') center/cover no-repeat;
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  
 }
 
 /* Dark overlay on banner */
@@ -18,13 +19,15 @@
   backdrop-filter: blur(3px);
 }
 
+
 /* Centered text */
 .content {
   position: relative;
   text-align: center;
   color: #644d00;
   max-width: 800px;
-  padding: 20px;
+  padding: 2%;
+ padding-bottom: 20%;
   animation: fadeUp 1.3s ease-out;
 }
 
@@ -71,3 +74,110 @@
     transform: translateY(0);
   }
 }
+/* Challenge logo */
+.challenge-logo {
+  width: 100px;
+
+}
+
+.sponsors {
+  position: absolute;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  
+  display: flex;
+  flex-wrap: wrap;          /* ⭐ allows logos to go to next line */
+  justify-content: center;  /* center nicely */
+  align-items: center;
+  gap: 10px;
+
+  max-width: 95%;           /* never exceed screen width */
+  padding: 6px 10px;
+  text-align: center;
+}
+
+
+
+.sponsors span {
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  font-weight: 600;
+  color: #5b4600;
+}
+
+.sponsor-logo {
+  height: 40px;
+  max-width: 120px;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+
+.sponsor-logo:hover {
+  transform: scale(1.08);
+}
+
+.content {
+  position: relative;
+  text-align: center;
+  color: #644d00;
+  max-width: 800px;
+  padding: 2%;
+  padding-bottom: 10%;
+  animation: fadeUp 1.3s ease-out;
+  z-index: 2;
+}
+
+@media (max-width: 768px) {
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+  }
+
+  .register-btn {
+    padding: 12px 24px;
+    font-size: 1rem;
+  }
+
+  .challenge-logo {
+              width: 47px;
+        position: relative;
+        top: 19px;
+  }
+  .content{
+    padding-bottom: 0%;
+  }
+
+  .sponsors {
+    bottom: 10px;
+    gap: 8px;
+  }
+
+  .sponsor-logo {
+    height: 30px;   /* ⭐ shrink logos */
+    max-width: 90px;
+  }
+
+  .sponsors span {
+    width: 100%;   /* put "Sponsored By" on its own row */
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+  }
+
+  .content {
+    padding-bottom: 35%; /* prevent overlap with sponsors */
+  }
+}
+@media (max-width: 408px) {
+
+.title{
+  font-size: 1.5rem;
+}
+
+}
+

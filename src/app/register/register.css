@@ -41,14 +41,33 @@ h2 {
   align-items: center;
   margin-bottom: 25px;
 }
+.logoe {
+width: 143px;
+    height: 112px;
+  object-fit: contain;
+}
 .logo {
-  width: 80px;
-  height: 80px;
+width: 150px;
+    height: 112px;
   object-fit: contain;
 }
 @media (max-width: 600px) {
-  .logo { width: 55px; height: 55px; }
-  .form-header h2 { font-size: 24px; }
+.logoe{
+         width: 22%;
+        position: absolute;
+        right: 7%;
+        top: 6%;
+}
+.logo{
+                position: absolute;
+        top: 6%;
+        width: 28%;
+}
+ .form-header h2 { 
+ padding-top: 13%;
+        font-size: 24px;
+        position: relative;
+        left: 13%; }
 }
 
 /* ---------- FORM GROUP ---------- */
@@ -93,7 +112,7 @@ input, textarea { padding: 8px; border: 1px solid #ccc; border-radius: 8px; }
 .remove-btn { background: #ffe5e5; color: #9f862b; }
 .remove-btn:hover { background: #ffcccc; }
 .review-btn { background: #99822f; color: white; border: 2px solid #dfe3eb; }
-.review-btn:hover { background: #eef2f9; }
+.review-btn:hover { background: #eef2f9; color: #99822f; }
 .submit-btn { background: linear-gradient(90deg, #c7a34e, #99822f); color: #fff; }
 .submit-btn:hover { opacity: 0.9; transform: translateY(-2px); }
 .draft-btn { background: #f0f0f0; color: #99822f; }
@@ -102,3 +121,26 @@ input, textarea { padding: 8px; border: 1px solid #ccc; border-radius: 8px; }
 /* ---------- SUCCESS / ERROR ---------- */
 .success { margin-top: 20px; padding: 14px; border-radius: 12px; background: #d4f8dd; color: #18753c; }
 .error { margin-top: 20px; padding: 14px; border-radius: 12px; background: #ffe3e3; color: #99822f; }
+@media (max-width: 408px) {
+
+.form-header h2{
+
+  margin-bottom: 0px;
+}
+.logoe{
+         width: 22%;
+        position: absolute;
+        right: 7%;
+        top: 6%;
+}
+.logo{
+          position: absolute;
+        top: 12%;
+}
+.form-container{
+      font-size: xx-small;
+}
+button{
+ font-size: smaller;
+}
+}
