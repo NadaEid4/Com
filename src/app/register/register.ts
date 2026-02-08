@@ -47,7 +47,7 @@ genders: string[] = ['Male', 'Female'];
       projectDescription: ['', Validators.required],
       supervisorName: ['', Validators.required],
       supervisorEmail: ['', [Validators.required, Validators.email]],
-     governorate: ['', Validators.required],
+     teamGovernorate: ['', Validators.required],
       members: this.fb.array([])
     },
     {
@@ -218,7 +218,9 @@ membersValidator(form: FormGroup) {
 }
 
 goToReview() {
-  this.markAllAsTouched(this.form);
+  this.form.markAllAsTouched();
+this.members.controls.forEach(m => m.markAllAsTouched());
+
   this.addMemberIfNeeded();
 
   if (this.form.invalid) {

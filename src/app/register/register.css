@@ -135,10 +135,10 @@ input, textarea { padding: 8px; border: 1px solid #ccc; border-radius: 8px; }
 }
 .logo{
           position: absolute;
-        top: 12%;
+        top: 6%;
 }
 .form-container{
-      font-size: xx-small;
+      font-size: smaller;
 }
 button{
  font-size: smaller;

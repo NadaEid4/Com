@@ -55,7 +55,7 @@ constructor() {
           projectDescription: this.data.projectDescription,
           supervisorName: this.data.supervisorName,
           supervisorEmail: this.data.supervisorEmail,
-          city: this.data.city,
+          Governorate: this.data.Governorate,
           submitted: true // mark as submitted
         }]);
 

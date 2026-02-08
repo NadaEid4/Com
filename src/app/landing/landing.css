@@ -149,9 +149,7 @@
         position: relative;
         top: 19px;
   }
-  .content{
-    padding-bottom: 0%;
-  }
+ 
 
   .sponsors {
     bottom: 10px;
@@ -170,7 +168,7 @@
   }
 
   .content {
-    padding-bottom: 35%; /* prevent overlap with sponsors */
+    padding-bottom: 15%; /* prevent overlap with sponsors */
   }
 }
 @media (max-width: 408px) {

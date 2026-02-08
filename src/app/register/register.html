@@ -53,11 +53,14 @@
 </div>
 <div class="form-group">
   <label>Governorate *</label>
-  <select formControlName="governorate">
+  <select formControlName="teamGovernorate">
     <option value="">Select Governorate</option>
     <option *ngFor="let gov of governorates" [value]="gov">{{ gov }}</option>
   </select>
-
+  <small class="error"
+    *ngIf="form.get('governorate')?.invalid && form.get('governorate')?.touched">
+    Governorate is required.
+  </small>
 </div>
 
 
@@ -68,14 +71,34 @@
     <div class="form-group">
       <label>University / Institution *</label>
       <input formControlName="university">
+       <small class="error"
+    *ngIf="form.get('university')?.invalid && form.get('university')?.touched">
+    University is required.
+  </small>
     </div>
     <div class="form-group">
       <label>Faculty / College *</label>
       <input formControlName="faculty">
+       <small class="error"
+    *ngIf="form.get('faculty')?.invalid && form.get('faculty')?.touched">
+    Faculty is required.
+  </small>
     </div>
     <div class="form-group">
       <label>Number of Team Members *</label>
       <input type="number" formControlName="membersCount">
+      <small class="error"
+    *ngIf="form.get('membersCount')?.touched && form.get('membersCount')?.invalid">
+
+    <span *ngIf="form.get('membersCount')?.errors?.['required']">
+      Number of members is required.
+    </span>
+
+    <span *ngIf="form.get('membersCount')?.errors?.['min']">
+      Team must contain at least 1 member.
+    </span>
+
+  </small>
     </div>
 
     <hr>

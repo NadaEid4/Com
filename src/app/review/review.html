@@ -14,7 +14,7 @@
       <div><strong>Project Description:</strong> {{ data.projectDescription }}</div>
       <div><strong>Supervisor Name:</strong> {{ data.supervisorName }}</div>
       <div><strong>Supervisor Email:</strong> {{ data.supervisorEmail }}</div>
-      <div><strong>City:</strong> {{ data.city }}</div>
+      <div><strong>Governorate:</strong> {{ data.teamGovernorate }}</div>
       <div><strong>Number of Team Members:</strong> {{ data.membersCount }}</div>
     </div>
   </div>
@@ -58,11 +58,6 @@
     <button class="draft-btn" (click)="saveAsDraft()">
       💾 Save as Draft
     </button>
-  </div>
-
-  <!-- Show draft link if available -->
-  <div *ngIf="draftLink" class="draft-link">
-    Temporary Link: <a [href]="draftLink" target="_blank">{{ draftLink }}</a>
   </div>
 
 
