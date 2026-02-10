@@ -80,43 +80,12 @@
 
 }
 
-.sponsors {
-  position: absolute;
-  bottom: 18px;
-  left: 50%;
-  transform: translateX(-50%);
-  
-  display: flex;
-  flex-wrap: wrap;          /* ⭐ allows logos to go to next line */
-  justify-content: center;  /* center nicely */
-  align-items: center;
-  gap: 10px;
-
-  max-width: 95%;           /* never exceed screen width */
-  padding: 6px 10px;
-  text-align: center;
-}
 
 
 
-.sponsors span {
-  font-size: 0.9rem;
-  letter-spacing: 2px;
-  font-weight: 600;
-  color: #5b4600;
-}
-
-.sponsor-logo {
-  height: 40px;
-  max-width: 120px;
-  object-fit: contain;
-  transition: transform 0.3s ease;
-}
 
 
-.sponsor-logo:hover {
-  transform: scale(1.08);
-}
+
 
 .content {
   position: relative;
@@ -128,8 +97,92 @@
   animation: fadeUp 1.3s ease-out;
   z-index: 2;
 }
+  /* Bottom partners container */
+.partners {
+  position: absolute;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 95%;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Each group */
+.organized,
+.sponsored {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* Titles */
+.organized span,
+.sponsored span {
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  font-weight: 600;
+  color: #5b4600;
+  margin-right: 6px;
+}
+
+/* Logos */
+.partner-logo {
+  height: 42px;
+  max-width: 120px;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.partner-logo:hover {
+  transform: scale(1.08);
+}
+
+/* Sponsor slightly bigger */
+.partner-logo.sponsor {
+  height: 68px;
+ 
+}
 
 @media (max-width: 768px) {
+
+
+  .partners {
+    flex-direction: column;
+    gap: 10px;
+    bottom: 8px;
+  }
+
+  .organized,
+  .sponsored {
+    justify-content: center;
+  }
+
+  .partner-logo {
+    height: 30px;
+    max-width: 90px;
+  }
+
+  .partner-logo.sponsor {
+    height: 38px;
+  }
+
+  .organized span,
+  .sponsored span {
+    width: 100%;
+    text-align: center;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+  }
+
+  .content {
+    padding-bottom: 18%;
+  }
+
 
   .title {
     font-size: 2rem;
@@ -151,21 +204,9 @@
   }
  
 
-  .sponsors {
-    bottom: 10px;
-    gap: 8px;
-  }
 
-  .sponsor-logo {
-    height: 30px;   /* ⭐ shrink logos */
-    max-width: 90px;
-  }
 
-  .sponsors span {
-    width: 100%;   /* put "Sponsored By" on its own row */
-    font-size: 0.75rem;
-    letter-spacing: 1px;
-  }
+
 
   .content {
     padding-bottom: 15%; /* prevent overlap with sponsors */
