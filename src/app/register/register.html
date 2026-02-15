@@ -1,6 +1,6 @@
 <div class="form-container">
 <div class="topheader">
-    <img  src="/assets/Logo.png" alt="Logo" class="logo main">
+    <img  src="/assets/Tech.png" alt="Logo" class="logo main">
   
 </div>
   <!-- HEADER WITH LOGO -->
@@ -68,7 +68,35 @@
 
 
 
-  
+  <h3>General Information</h3>
+
+<div class="form-group">
+  <label>Where did you hear about us? *</label>
+
+  <select formControlName="hearAbout">
+    <option value="">Select</option>
+    <option>Facebook</option>
+    <option>LinkedIn</option>
+    <option>University</option>
+    <option>Friend</option>
+    <option>Instructor</option>
+    <option>Event</option>
+    <option>Other</option>
+  </select>
+
+  <small *ngIf="form.get('hearAbout')?.touched && form.get('hearAbout')?.invalid">
+    This field is required
+  </small>
+</div>
+
+<div class="form-group" *ngIf="form.get('hearAbout')?.value === 'Other'">
+  <label>Please specify *</label>
+  <input formControlName="hearAboutOther">
+
+  <small *ngIf="form.get('hearAboutOther')?.touched && form.get('hearAboutOther')?.invalid">
+    Please tell us where you heard about us
+  </small>
+</div>
 
     <!-- UNIVERSITY & TEAM INFO -->
     <div class="form-group">

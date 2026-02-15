@@ -45,7 +45,7 @@
   font-size: 22px;
   font-weight: 600;
   margin-bottom: 15px;
-  border-left: 5px solid #99822f;
+  border-left: 5px solid #245987;
   padding-left: 10px;
   color: #333;
 }
@@ -61,7 +61,7 @@
 .member-card h4 {
   font-size: 18px;
   margin-bottom: 15px;
-  color: #99822f;
+  color: #245987;
 }
 
 /* Confirmation Checkbox */
@@ -99,13 +99,13 @@
 }
 
 .confirm-btn {
-  background: #99822f;
+  background: #245887;
   color: white;
   font-weight: 600;
 }
 
 .confirm-btn:disabled {
-  background: #d3b76d;
+  background: #82bfd4;
   cursor: not-allowed;
 }
 
@@ -123,7 +123,7 @@
   margin-top: 20px;
   padding: 12px;
   background: #ffe3e3;
-  color: #99822f;
+  color: #245887;
   border-radius: 8px;
   font-weight: 600;
 }

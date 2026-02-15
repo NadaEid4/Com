@@ -29,7 +29,7 @@ h2 {
   font-size: 32px;
   font-weight: 800;
   margin-bottom: 25px;
-  background: linear-gradient(90deg, #c7a34e, #99822f);
+  background: linear-gradient(90deg, #245987, #041830);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -50,6 +50,9 @@ width: 143px;
 width: 150px;
     height: 44px;
   object-fit: contain;
+}
+.topheader .logo{
+  height: 88px;
 }
 @media (max-width: 600px) {
 .logoe{
@@ -93,7 +96,7 @@ input, textarea { padding: 8px; border: 1px solid #ccc; border-radius: 8px; }
   margin-bottom: 25px;
 }
 .member-box:hover {
-  border-color: #99822f;
+  border-color: #041830;
   box-shadow: 0 6px 20px rgba(95, 81, 0, 0.1);
 }
 
@@ -112,20 +115,20 @@ input, textarea { padding: 8px; border: 1px solid #ccc; border-radius: 8px; }
   flex: 1;
   transition: 0.3s;
 }
-.add-btn { background: #ede9df; color: #99822f; }
+.add-btn { background: #ede9df; color: #041830; }
 .add-btn:hover { background: #d6eaff; }
-.remove-btn { background: #ffe5e5; color: #9f862b; }
+.remove-btn { background: #ffe5e5; color: #041830; }
 .remove-btn:hover { background: #ffcccc; }
-.review-btn { background: #99822f; color: white; border: 2px solid #dfe3eb; }
-.review-btn:hover { background: #eef2f9; color: #99822f; }
-.submit-btn { background: linear-gradient(90deg, #c7a34e, #99822f); color: #fff; }
+.review-btn { background: #041830; color: white; border: 2px solid #dfe3eb; }
+.review-btn:hover { background: #eef2f9; color: #041830; }
+.submit-btn { background: linear-gradient(90deg, #245987, #041830); color: #fff; }
 .submit-btn:hover { opacity: 0.9; transform: translateY(-2px); }
-.draft-btn { background: #f0f0f0; color: #99822f; }
+.draft-btn { background: #f0f0f0; color: #041830; }
 .draft-btn:hover { background: #e0e0e0; }
 
 /* ---------- SUCCESS / ERROR ---------- */
 .success { margin-top: 20px; padding: 14px; border-radius: 12px; background: #d4f8dd; color: #18753c; }
-.error { margin-top: 20px; padding: 14px; border-radius: 12px; background: #ffe3e3; color: #99822f; }
+.error { margin-top: 20px; padding: 14px; border-radius: 12px; background: #ffe3e3; color: #041830; }
 @media (max-width: 408px) {
 
 .form-header h2{

@@ -2,7 +2,8 @@
   position: relative;
   width: 100%;
   height: 97vh;
-  background: url('../../assets/hero-bg.png') center/cover no-repeat;
+  background-color: #04183178;
+ /* background: url('../../assets/hero-bg.png') center/cover no-repeat;*/
   display: flex;
   justify-content: center;
   align-items: center;
@@ -15,7 +16,7 @@
   position: absolute;
   width: 100%;
   height: 100%;
-  background:#c6a24d5c;
+  background:#09364bab;
   backdrop-filter: blur(3px);
 }
 
@@ -24,7 +25,7 @@
 .content {
   position: relative;
   text-align: center;
-  color: #644d00;
+  color: #ffffff;
   max-width: 800px;
   padding: 2%;
  padding-bottom: 20%;
@@ -46,7 +47,7 @@
 
 /* Cool button */
 .register-btn {
-  background: linear-gradient(90deg,  #9d7e0d, #99822f);
+  background: linear-gradient(90deg,  #041830, #245987);
   color: white;
   border: none;
   padding: 14px 32px;
@@ -76,7 +77,7 @@
 }
 /* Challenge logo */
 .challenge-logo {
-  width: 100px;
+  width: 120px;
 
 }
 
@@ -90,7 +91,7 @@
 .content {
   position: relative;
   text-align: center;
-  color: #644d00;
+  color: #ffffff;
   max-width: 800px;
   padding: 2%;
   padding-bottom: 10%;
@@ -104,11 +105,13 @@
   left: 50%;
   transform: translateX(-50%);
   width: 95%;
-
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 20px;
+}
+.partner-logo .sec{
+  max-width: 146px;
 }
 
 /* Each group */
@@ -116,8 +119,8 @@
 .sponsored {
   display: flex;
   align-items: center;
-  gap: 12px;
-  flex-wrap: wrap;
+ 
+ 
 }
 
 /* Titles */
@@ -126,7 +129,7 @@
   font-size: 0.9rem;
   letter-spacing: 2px;
   font-weight: 600;
-  color: #5b4600;
+  color: #ffffff;
   margin-right: 6px;
 }
 
@@ -198,7 +201,7 @@
   }
 
   .challenge-logo {
-              width: 47px;
+              width: 78px;
         position: relative;
         top: 19px;
   }

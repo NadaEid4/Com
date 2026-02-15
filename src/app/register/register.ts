@@ -48,6 +48,8 @@ genders: string[] = ['Male', 'Female'];
       supervisorName: ['', Validators.required],
       supervisorEmail: ['', [Validators.required, Validators.email]],
      teamGovernorate: ['', Validators.required],
+     hearAbout: ['', Validators.required],   // ⭐ NEW
+  hearAboutOther: [''],                   // ⭐ NEW
       members: this.fb.array([])
     },
     {
@@ -68,6 +70,19 @@ ngOnInit(): void {
     this.members.clear();
     stateData.members?.forEach((m: any) => this.members.push(this.createMember(m)));
   }
+  this.form.get('hearAbout')?.valueChanges.subscribe(value => {
+  const otherControl = this.form.get('hearAboutOther');
+
+  if (value === 'Other') {
+    otherControl?.setValidators([Validators.required]);
+  } else {
+    otherControl?.clearValidators();
+    otherControl?.setValue('');
+  }
+
+  otherControl?.updateValueAndValidity();
+});
+
 }
 
 
